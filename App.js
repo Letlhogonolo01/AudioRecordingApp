@@ -1,25 +1,15 @@
-import React from "react";
-import { Provider } from "react-redux";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import AudioRecordingScreen from './screens/AudioRecordingScreen';
-import AudioPlaybackScreen from './screens/AudioPlaybackScreen';
-import store from "./redux/store";
+import React from 'react';
+import {StatusBar, Text, View} from 'react-native';
+import Navigation from './components/Navigation';
+import {AuthProvider} from './context/AuthContext';
 
-const Stack = createStackNavigator();
-
-export default function App() {
+const App = () => {
   return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="AudioRecording">
-          <Stack.Screen
-            name="AudioRecording"
-            component={AudioRecordingScreen}
-          />
-          <Stack.Screen name="AudioPlayback" component={AudioPlaybackScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </Provider>
+    <AuthProvider>
+      <StatusBar backgroundColor="#06bcee" />
+      <Navigation />
+    </AuthProvider>
   );
-}
+};
+
+export default App;
